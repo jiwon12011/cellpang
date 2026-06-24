@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>세포팡 · 유미의 세포들</title>
+  <meta name="description" content="유미의 세포들 캐릭터로 즐기는 애니팡 스타일 매치-3 미니게임" />
+
+  <!-- PWA / 핸드폰 앱 -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#FF6B9D" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="세포팡" />
+  <link rel="apple-touch-icon" href="./icons/icon-180.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+  <link rel="stylesheet" href="./game.css" />
+</head>
+<body>
+  <main class="stage">
+    <div class="game-shell">
+
+      <!-- 상단 HUD -->
+      <header class="hud">
+        <div class="hud-item hud-score">
+          <span class="hud-label">SCORE</span>
+          <span class="hud-value" id="score">0</span>
+        </div>
+        <div class="hud-brand">
+          <span class="hud-brand-top">세포팡</span>
+          <span class="hud-brand-sub">Yumi's Cells</span>
+        </div>
+        <div class="hud-item hud-time">
+          <span class="hud-label">TIME</span>
+          <span class="hud-value" id="time">60</span>
+        </div>
+      </header>
+
+      <!-- 타이머 바 -->
+      <div class="time-track"><div class="time-fill" id="timeFill"></div></div>
+
+      <!-- 보드 -->
+      <div class="board-wrap">
+        <div class="board" id="board"></div>
+
+        <!-- 시작 화면 -->
+        <div class="overlay overlay--start is-active" id="startScreen">
+          <div class="overlay-card">
+            <h1 class="overlay-title">세포팡</h1>
+            <p class="overlay-sub">같은 세포 3개를 맞춰 터뜨려요!<br/>60초 안에 최고 점수에 도전하세요 🎉</p>
+            <div class="overlay-best">최고 기록 <b id="bestStart">0</b></div>
+            <button class="btn-play" id="startBtn">게임 시작</button>
+            <p class="overlay-hint">타일을 드래그하거나, 두 타일을 차례로 탭하세요</p>
+          </div>
+        </div>
+
+        <!-- 게임오버 화면 -->
+        <div class="overlay overlay--over" id="overScreen">
+          <div class="overlay-card">
+            <h2 class="overlay-title" id="overTitle">시간 종료!</h2>
+            <div class="result-score">
+              <span class="result-label">내 점수</span>
+              <span class="result-value" id="finalScore">0</span>
+            </div>
+            <div class="overlay-best" id="bestLine">최고 기록 <b id="bestOver">0</b></div>
+            <div class="result-cell" id="resultCell"></div>
+            <button class="btn-play" id="retryBtn">다시 하기</button>
+            <a class="btn-home" href="https://github.com/jiwon12011/Yumi-s-Cells" target="_blank" rel="noopener">유미의 세포들 팬페이지 ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 콤보 토스트 -->
+      <div class="combo-toast" id="comboToast"></div>
+
+      <footer class="game-foot">📌 공식 콘텐츠 소비를 지향하고 원작자를 지지합니다.</footer>
+    </div>
+  </main>
+
+  <script src="./game.js"></script>
+  <script>
+    // 서비스워커 등록 — 홈화면 설치 + 오프라인 동작
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
