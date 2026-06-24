@@ -381,6 +381,13 @@ def make_icons():
 
 
 def main():
+    import sys
+
+    if "--placeholder" not in sys.argv:
+        raise SystemExit(
+            "This legacy helper generates placeholder art and can overwrite the curated high-quality assets. "
+            "Run with --placeholder only when you intentionally want placeholder regeneration."
+        )
     make_tiles()
     make_special_tiles_and_icons()
     make_backgrounds()
