@@ -1,0 +1,75 @@
+{
+  "v": 1,
+  "chapterId": "ch1",
+  "title": "보통의 하루",
+  "scenes": [
+    {
+      "id": "ch1-morning",
+      "title": "오늘도 출근",
+      "timeBand": "morning",
+      "board": { "cols": 5, "rows": 7 },
+      "tileKinds": ["love", "passion", "logic", "food"],
+      "moves": 22,
+      "mission": { "type": "clear_cloud", "target": 5 },
+      "intro": [
+        { "cell": "logic", "speaker": "이성세포", "text": "기상 5분 전… 일어나야 해, 유미야." },
+        { "cell": "passion", "speaker": "감성세포", "text": "오늘 하루만 더 잘게요오…" },
+        { "narration": "월요일 아침. 마을 전체가 '이불 밖은 위험하다'에 동의했다. 먹구름부터 걷어내 볼까?" }
+      ],
+      "endingClear": [
+        { "cell": "love", "speaker": "사랑세포", "text": "봤지? 먹구름 다 걷혔어. 출근 가자!" },
+        { "narration": "무거운 아침을 넘겼다. 마을에 햇살이 들었다." }
+      ],
+      "endingSoft": [
+        { "cell": "passion", "speaker": "감성세포", "text": "안 풀리는 날도 있죠. 그래도 여기까지 온 게 어디예요." },
+        { "narration": "오늘은 좀 무거웠다. 그래도 마을은 무사하다." }
+      ],
+      "unlockedByDefault": true
+    },
+    {
+      "id": "ch1-lunch",
+      "title": "출출세포의 시간",
+      "timeBand": "noon",
+      "board": { "cols": 5, "rows": 7 },
+      "tileKinds": ["food", "love", "passion", "logic", "sense"],
+      "moves": 20,
+      "mission": { "type": "fill", "tile": "food", "target": 16 },
+      "intro": [
+        { "cell": "food", "speaker": "출출세포", "text": "점심 뭐 먹지… 이건 인생 최대 난제야." },
+        { "narration": "점심시간. 출출세포가 마을 회의를 소집했다. 오늘의 메뉴를 모아보자!" }
+      ],
+      "endingClear": [
+        { "cell": "food", "speaker": "출출세포", "text": "꺄— 마음이 꽉 찼다! (밥도 찼으면 더 좋고)" },
+        { "narration": "소소하지만 확실한 점심의 행복. 한 컷 남겼어요." }
+      ],
+      "endingSoft": [
+        { "cell": "food", "speaker": "출출세포", "text": "이런 날엔 야식이지. 내가 책임진다." },
+        { "narration": "조금 아쉬운 점심. 그래도 그런 날도 하루예요." }
+      ],
+      "unlockedByDefault": false
+    },
+    {
+      "id": "ch1-afternoon",
+      "title": "그 사람 메시지",
+      "timeBand": "afternoon",
+      "board": { "cols": 5, "rows": 7 },
+      "tileKinds": ["love", "passion", "sense", "heart-wish"],
+      "moves": 20,
+      "mission": { "type": "combo_chain", "target": 4 },
+      "intro": [
+        { "cell": "heart-wish", "speaker": "응큼세포", "text": "띠링— 왔다 왔다! 그 사람 메시지!" },
+        { "cell": "love", "speaker": "사랑세포", "text": "전원 기립!! 두근두근 시작이야!" },
+        { "narration": "알림 하나에 온 세포가 비상소집됐다. 두근거림을 연쇄로 터뜨려 봐!" }
+      ],
+      "endingClear": [
+        { "cell": "love", "speaker": "사랑세포", "text": "이건… 운명이야. 오늘 유미 좀 멋있었어." },
+        { "narration": "두근거린 오후. 설렘 한 컷이 남았다." }
+      ],
+      "endingSoft": [
+        { "cell": "sense", "speaker": "감각세포", "text": "괜찮아. 천천히 답장해도 돼." },
+        { "narration": "조금 떨렸던 오후. 흐린 한 컷도 하루예요." }
+      ],
+      "unlockedByDefault": false
+    }
+  ]
+}

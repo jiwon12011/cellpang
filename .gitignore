@@ -1,3 +1,6 @@
 .DS_Store
 *.log
 node_modules/
+
+# jiwon-harness 런타임 (테스트·빌드 캡처)
+.jiwon-team/

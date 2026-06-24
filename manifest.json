@@ -1,7 +1,7 @@
 {
-  "name": "세포팡 · 유미의 세포들",
+  "name": "세포팡 · 오늘의 마음, 한 판",
   "short_name": "세포팡",
-  "description": "유미의 세포들 캐릭터로 즐기는 힐링 매치-3 퍼즐",
+  "description": "유미의 세포들과 함께 오늘의 감정을 돌보는 힐링 매치-3",
   "lang": "ko",
   "start_url": "./index.html",
   "scope": "./",
