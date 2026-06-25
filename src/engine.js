@@ -6,21 +6,37 @@
    - 이벤트: match / cascade / resolveEnd / obstacleCleared / shuffled
    ========================================================= */
 
+// 타일 = 새 세포 얼굴 아이콘(색·표정으로 구분). 매치-3 가독성↑
 export const CELLS = {
-  "love":       { img: "./assets/tiles/cell-love.webp",       glyph: "♥" },
-  "passion":    { img: "./assets/tiles/cell-passion.webp",    glyph: "▲" },
-  "heart-wish": { img: "./assets/tiles/cell-heart-wish.webp", glyph: "✦" },
-  "food":       { img: "./assets/tiles/cell-food.webp",       glyph: "◗" },
-  "logic":      { img: "./assets/tiles/cell-logic.webp",      glyph: "▢" },
-  "sense":      { img: "./assets/tiles/cell-sense.webp",      glyph: "~" },
+  "love":       { img: "./assets/tiles/face-love.webp",       glyph: "♥" },
+  "passion":    { img: "./assets/tiles/face-passion.webp",    glyph: "▲" },
+  "heart-wish": { img: "./assets/tiles/face-heart-wish.webp", glyph: "✦" },
+  "food":       { img: "./assets/tiles/face-food.webp",       glyph: "◗" },
+  "logic":      { img: "./assets/tiles/face-logic.webp",      glyph: "▢" },
+  "sense":      { img: "./assets/tiles/face-sense.webp",      glyph: "~" },
 };
-const CLOUD_IMG = "./assets/tiles/cell-cloud.webp";
+// 방해물: 데이터 mission.obstacle 로 종류 선택(없으면 cloud — 기존 동작 호환)
+const OBSTACLES = {
+  cloud: { img: "./assets/tiles/cell-cloud.webp",     glyph: "☁", alt: "먹구름" },
+  ice:   { img: "./assets/tiles/obstacle-ice.webp",   glyph: "❄", alt: "얼음" },
+  box:   { img: "./assets/tiles/obstacle-box.webp",   glyph: "▣", alt: "상자" },
+};
+
+// 특수 타일 경로 상수 — 엔진 룰은 이번 범위 밖(미사용 OK). 차후 룰/모션 확장용 훅.
+export const SPECIALS = {
+  bomb:       "./assets/tiles/special-bomb.webp",
+  lineH:      "./assets/tiles/special-line-h.webp",
+  lineV:      "./assets/tiles/special-line-v.webp",
+  rainbow:    "./assets/tiles/special-rainbow.webp",
+  primeCrown: "./assets/tiles/tile-prime-crown.webp",
+};
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export function createEngine(boardEl) {
   let ROWS = 7, COLS = 5;
   let kinds = [];           // 이 보드에서 쓰는 세포 종류(부분집합)
+  let obstacleKind = "cloud"; // 이 보드의 방해물 종류
   let grid = [];            // grid[r][c] = tile | null
   let cellSize = 56;
   let offX = 0, offY = 0, boardGap = 12;
@@ -75,8 +91,9 @@ export function createEngine(boardEl) {
     const inner = document.createElement("div");
     inner.className = "tile-inner";
     const img = document.createElement("img");
-    img.src = obstacle ? CLOUD_IMG : CELLS[kind].img;
-    img.alt = obstacle ? "cloud" : kind;
+    const ob = OBSTACLES[obstacleKind] || OBSTACLES.cloud;
+    img.src = obstacle ? ob.img : CELLS[kind].img;
+    img.alt = obstacle ? ob.alt : kind;
     img.draggable = false;
     inner.appendChild(img);
     el.appendChild(inner);
@@ -89,8 +106,9 @@ export function createEngine(boardEl) {
   function randKind() { return kinds[rnd(kinds.length)]; }
 
   // 초기 보드: 매치 없이 생성 + 방해물 배치
-  function build({ rows, cols, tileKinds, obstacles = 0 }) {
+  function build({ rows, cols, tileKinds, obstacles = 0, obstacleType = "cloud" }) {
     ROWS = rows; COLS = cols; kinds = tileKinds.slice();
+    obstacleKind = OBSTACLES[obstacleType] ? obstacleType : "cloud";
     boardEl.querySelectorAll(".tile").forEach((t) => t.remove());
     grid = [];
     for (let r = 0; r < ROWS; r++) {

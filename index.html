@@ -17,14 +17,19 @@
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
 
   <link rel="stylesheet" href="./styles.css" />
+  <!-- LCP: 스플래시 풀블리드 이미지를 preload 스캐너가 즉시 발견(모듈 JS 파싱 전) -->
+  <link rel="preload" as="image" href="./assets/brand/splash.webp" fetchpriority="high" />
 </head>
 <body>
   <div class="app" id="app">
-    <section class="screen" id="screen-home"   data-screen="home"></section>
-    <section class="screen" id="screen-map"    data-screen="map"></section>
-    <section class="screen" id="screen-scene"  data-screen="scene"></section>
-    <section class="screen" id="screen-play"   data-screen="play"></section>
-    <section class="screen" id="screen-result" data-screen="result"></section>
+    <section class="screen" id="screen-splash"  data-screen="splash"></section>
+    <section class="screen" id="screen-home"    data-screen="home"></section>
+    <section class="screen" id="screen-map"     data-screen="map"></section>
+    <section class="screen" id="screen-scene"   data-screen="scene"></section>
+    <section class="screen" id="screen-play"    data-screen="play"></section>
+    <section class="screen" id="screen-result"  data-screen="result"></section>
+    <section class="screen" id="screen-gallery" data-screen="gallery"></section>
+    <section class="screen" id="screen-report"  data-screen="report"></section>
   </div>
 
   <script type="module" src="./src/app.js"></script>
