@@ -3,6 +3,8 @@
 Generated UI assets for the Cell Pang match-3 prototype.
 
 - `cell-character-set-transparent.png`: 16-cell character tile set with transparent background.
+- `cells/`: 16 individually cropped transparent cell face PNG files.
+- `cell-faces-individual-preview.png`: checkerboard preview for the individual cell face files.
 - `ui-top-hud-board-empty-slot-transparent.png`: top HUD board with an empty center socket for a separate cell PNG.
 - `ui-detail-parts-transparent.png`: HUD/detail parts sheet with transparent background.
 - `ui-icons-sheet-transparent.png`: icon sheet with transparent background.
